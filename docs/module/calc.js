@@ -3,7 +3,7 @@ const calcU = (windsp) => {
     return -2.5*windsp + 1.2*windsp*windsp - 8.5*0.01*Math.pow(windsp,3);
 }
 const calcRH = (rh) => {
-    return -2.8*rh + 2.9*0.01*rh*rh - 1.1*0.0001*Math.pow(rh,3)
+    return -2.8*rh + 2.9*0.01*rh*rh - 1.1*Math.pow(10,-4)*Math.pow(rh,3)
 };
 
 const calcCn = (W, temp, windsp, rh)=> {
