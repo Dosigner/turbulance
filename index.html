@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Cn2 Predict System</title>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
 </head>
 <body>  
-        <a href="https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36">
+        <a href="https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36" target='_blank'>
             기상청 데이터 다운로드
         </a><br>
         <label for="csv">CSV 파일 업로드</label>
@@ -15,7 +18,6 @@
         <br>
         <button id="readButton">Read File</button> 
         <br>
-
         <div>
             <h3>날짜, 시간 입력</h3>
             <form id="timepicker">

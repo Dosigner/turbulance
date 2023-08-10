@@ -100,7 +100,7 @@ dateForm.addEventListener('submit',(event)=>{
         const card = document.createElement("div");
 
         const cardTitle = document.createElement("h4");
-        cardTitle.textContent = `${loc}의 Cn^2(m*10^-15) = ${c_n}`;
+        cardTitle.innerHTML = `${loc}의 Cn^2 = ${c_n}`+"m^{(-2/3)}*10^{-14}";
 
         //const cContent = document.createElement("p");
         //cContent.textContent = c_n;
