@@ -1,8 +1,8 @@
 //import XMLHttpRequest from 'xhr2';
 /* Concept and Application of Macroscale Meteorogoical Models */
 // this model for Cn^2 applies to 15m 해발고도
-import {temp_weights} from './modules/weights.js';
-import {calcCn} from './modules/calc.js';
+import {temp_weights} from './module/weights.js';
+import {calcCn} from './module/calc.js';
 // Relative Weight about Temporal Hour Interval
 let W = 0;
 const jsonArray= [];
