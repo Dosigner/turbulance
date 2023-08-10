@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbalence Predict System</title>
+</head>
+<body>  
+        <a href="https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36">
+            기상청 데이터 다운로드
+        </a><br>
+        <label for="csv">CSV 파일 업로드</label>
+        <input type="file" name="file" id="file" accept=".csv">
+        <button id="readButton">Read File</button> 
+        <br>
+
+        <div>
+            <h3>날짜, 시간 입력</h3>
+            <form id="timepicker">
+                <input type="date" name="date">
+                <input type="time" name="time">
+                <button type="submit">계산</button>
+            </form>
+        </div>
+    
+        <!--<form id="condition">
+            <label for="temp">온도 입력(℃)</label>
+            <input type="text" id="temp" name="temp" required/>
+            
+            <label for="wind">풍속 입력(m/s)</label>
+            <input type="text" id="wind" name="wind" required/>
+
+            <label for="humidity">상대 습도(%)</label>
+            <input type="text" id="humidity" name="humidity" required/>
+            
+            
+        </form>-->
+        
+    <div id="result">
+        <h4>Relative Weight about Temporal Hour Interval</h4>
+        <span id="wvalue">
+            None
+        </span>
+        
+        <div id="cardContainer">
+        </div>
+
+    </div>
+    <!-- 모듈 기능 가져오는 script는 최상위 모듈로 작동 -->
+    <script type="module" src="/index.js"></script>
+</body>
+</html>
