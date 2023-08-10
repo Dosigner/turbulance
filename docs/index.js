@@ -94,21 +94,22 @@ dateForm.addEventListener('submit',(event)=>{
         c_n = c_n.toFixed(3);
         
         console.log(c_n);
+        let loc = obj['지점명'];
 
         // display 작업
         const card = document.createElement("div");
 
         const cardTitle = document.createElement("h4");
-        cardTitle.textContent = "Modeled Cn^2(m*10^-15)";
+        cardTitle.textContent = `${loc}의 Cn^2(m*10^-15) = ${c_n}`;
 
-        const cContent = document.createElement("p");
-        cContent.textContent = c_n;
+        //const cContent = document.createElement("p");
+        //cContent.textContent = c_n;
         
-        const locContent = document.createElement("p");
-        locContent.textContent = obj['지점명'];
+        const weatherContent = document.createElement("p");
+        weatherContent.textContent = `온도: ${T}℃/ 바람: ${U}m/s/ 습도: ${RH}%`
+
         card.appendChild(cardTitle);
-        card.appendChild(cContent);
-        card.appendChild(locContent);
+        card.appendChild(weatherContent);
 
         cardContainer.appendChild(card);
     }
