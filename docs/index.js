@@ -106,7 +106,7 @@ dateForm.addEventListener('submit',(event)=>{
         //cContent.textContent = c_n;
         
         const weatherContent = document.createElement("p");
-        weatherContent.textContent = `온도: ${T}℃/ 바람: ${U}m/s/ 습도: ${RH}%`
+        weatherContent.textContent = `온도: ${T}℃, 바람: ${U}m/s, 습도: ${RH}%`
 
         card.appendChild(cardTitle);
         card.appendChild(weatherContent);
