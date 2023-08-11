@@ -129,7 +129,7 @@ dateForm.addEventListener('submit',(event)=>{
 
                 // 마커에 표시할 인포윈도우를 생성합니다 
                 var infowindow = new kakao.maps.InfoWindow({
-                    content: `<div><b>${c_n}m^(-2/3)</b><br/>${contents}</div>` // 인포윈도우에 표시할 내용
+                    content: `<div><b>${c_n}</b><br/>${contents}</div>` // 인포윈도우에 표시할 내용
                 });
 
                 // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다

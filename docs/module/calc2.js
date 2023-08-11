@@ -19,12 +19,12 @@ const d3 = new Big('-8.5e-17');
 const e = new Big('-5.3e-13');
 
 
-const calcT =(temp)=>  a1.times(temp+273);
+const calcT =(temp)=>  b1.times(temp+273.15);
 const calcU = (windsp) => {
     return d1.times(windsp).plus(d2.times(windsp*windsp)).plus(d3.times(windsp*windsp*windsp));
 }
 const calcRH = (rh) => {
-    return c1.times(rh).plus(c2.times(rh*rh)).plus(c3.times(Math.pow(rh,3)))
+    return c1.times(rh).plus(c2.times(rh*rh)).plus(c3.times(rh*rh*rh))
 };
 
 const calcCn = (W, temp, windsp, rh)=> {
