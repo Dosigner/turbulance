@@ -109,22 +109,12 @@ dateForm.addEventListener('submit',(event)=>{
         let loc = obj['지점명'];
 
         // display 작업
-        const card = document.createElement("div");
-
-        const cardTitle = document.createElement("h4");
-        cardTitle.innerHTML = `${loc}의 Cn^2 = ${c_n}`+"m^{(-2/3)}";
-
-        //const cContent = document.createElement("p");
-        //cContent.textContent = c_n;
+        document.getElementById('tableCard').style.display ="block";
+        const weatherContent = document.createElement("tr");
+        const contents = `<td>${loc}</td><td>${c_n}</td><td>${T}℃</td><td>${U}m/s</td><td>${RH}%</td>`
+        weatherContent.innerHTML = contents
         
-        const weatherContent = document.createElement("p");
-        const contents = `온도: ${T}℃, 바람: ${U}m/s, 습도: ${RH}%`
-        weatherContent.textContent = contents
-
-        card.appendChild(cardTitle);
-        card.appendChild(weatherContent);
-
-        cardContainer.appendChild(card);
+        cardContainer.appendChild(weatherContent);
 
         // map display 작업
         
@@ -186,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 jsonArray.push(obj);
             }
             console.log(jsonArray);
+            alert("Reading Success");
         };
         
     })

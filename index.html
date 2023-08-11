@@ -2,52 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- https http 자유롭게 넘나들게-->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    
+    <!-- kakao map -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b52be3eac83a04e7c3c9d60bca8f459c"></script>
+    
+    <!-- Styling -->
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Cn2 Predict System</title>    
 </head>
 <body>  
-        <a href="https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36" target='_blank'>
-            기상청 데이터 다운로드
-        </a><br>
+    <nav>
+        <div class="nav-wrapper" style="background-color: rgb(38, 65, 132);">
+            <a href="#!" class="brand-logo center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/ADD_Logo.svg/1200px-ADD_Logo.svg.png" style="width:3%"/> ADD</a>
+            <ul class="left hide-on-med-and-down">
+                <li>
+                    <a href="https://data.kma.go.kr/data/grnd/selectAsosRltmList.do?pgmNo=36" target='_blank'>
+                        기상 데이터 받아오기
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="./index.html">
+                        지도별 Cn2 보기
+                    </a>
+                </li>
+                <li class="none">
+                    <a href="./index.html">
+                        기간별 Cn2 그래프
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        <br>
         <label for="csv">CSV 파일 업로드</label>
         <input type="file" name="file" id="file" accept=".csv">
-        <br>
-        <button id="readButton">Read File</button> 
+        <button class="btn waves-effect waves-light" id="readButton">
+            파일 업로드<i class="material-icons right">file_upload</i>
+        </button> 
         <br>
         <div>
             <h3>날짜, 시간 입력</h3>
             <form id="timepicker">
                 <input type="date" name="date">
                 <input type="time" name="time">
-                <button type="submit">계산</button>
+                <button type="submit" class="btn waves-effect waves-yellow">계산</button>
             </form>
+            <b>Relative Weight about Temporal Hour Interval: </b>
+            <span id="wvalue">
+                None
+            </span>
         </div>
-    
-        <!--<form id="condition">
-            <label for="temp">온도 입력(℃)</label>
-            <input type="text" id="temp" name="temp" required/>
-            
-            <label for="wind">풍속 입력(m/s)</label>
-            <input type="text" id="wind" name="wind" required/>
-
-            <label for="humidity">상대 습도(%)</label>
-            <input type="text" id="humidity" name="humidity" required/>
-            
-            
-        </form>-->
-        
+        <br>
     <div id="result">
-        <h4>Relative Weight about Temporal Hour Interval</h4>
-        <span id="wvalue">
-            None
-        </span>
-        
-        <div id="cardContainer">
-        </div>
-    </div>
+        <table id="tableCard" class="responsive-table" style="max-width: 1000px; display: none;">
+            <thead>
+                <tr>
+                    <th>위치</th>
+                    <th>Cn^2</th>
+                    <th>온도(℃)</th>
+                    <th>풍속(m/s)</th>
+                    <th>상대 습도(%)</th>
+                </tr>
+            <thread>
+            <tbody id="cardContainer">
 
+            </tbody>
+        </table>
+    </div>
+    
+    <br>
     <div id="map" style="width:700px;height:500px;"></div>
     <!-- 모듈 기능 가져오는 script는 최상위 모듈로 작동 -->
     
