@@ -2,13 +2,26 @@
 /* Concept and Application of Macroscale Meteorogoical Models */
 // this model for Cn^2 applies to 15m 해발고도
 import {temp_weights} from './module/weights.js';
-import {calcCn} from './module/calc.js';
+import {calcCn} from './module/calc2.js';
+
+import {positions} from './module/geoloc.js'
+
 // Relative Weight about Temporal Hour Interval
 let W = 0;
 const jsonArray= [];
 let targetTimeArray = [];
 
 let dateForm = document.querySelector('form[id="timepicker"]');
+
+var container = document.getElementById('map');
+var options = {
+    center: new kakao.maps.LatLng(36, 128),
+    level: 13   
+};
+var map = new kakao.maps.Map(container, options);
+
+
+
 
 
 dateForm.addEventListener('submit',(event)=>{
@@ -69,7 +82,7 @@ dateForm.addEventListener('submit',(event)=>{
     };
     xhr.send('');
 
-
+    
     // 계산 작업
     let c_n=0;
     let T, U, RH=0;
@@ -91,7 +104,6 @@ dateForm.addEventListener('submit',(event)=>{
 
         RH = parseInt(obj['습도(%)']);
         c_n=calcCn(W,T,U,RH);
-        c_n = c_n.toFixed(3);
         
         console.log(c_n);
         let loc = obj['지점명'];
@@ -100,18 +112,43 @@ dateForm.addEventListener('submit',(event)=>{
         const card = document.createElement("div");
 
         const cardTitle = document.createElement("h4");
-        cardTitle.innerHTML = `${loc}의 Cn^2 = ${c_n}`+"m^{(-2/3)}*10^{-14}";
+        cardTitle.innerHTML = `${loc}의 Cn^2 = ${c_n}`+"m^{(-2/3)}";
 
         //const cContent = document.createElement("p");
         //cContent.textContent = c_n;
         
         const weatherContent = document.createElement("p");
-        weatherContent.textContent = `온도: ${T}℃, 바람: ${U}m/s, 습도: ${RH}%`
+        const contents = `온도: ${T}℃, 바람: ${U}m/s, 습도: ${RH}%`
+        weatherContent.textContent = contents
 
         card.appendChild(cardTitle);
         card.appendChild(weatherContent);
 
         cardContainer.appendChild(card);
+
+        // map display 작업
+        
+
+        for (var i = 0; i < positions.length; i ++) {
+            if (positions[i]["지점명"]===loc){
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: new kakao.maps.LatLng(positions[i]["lat"], positions[i]["lng"]) // 마커의 위치
+                });
+
+                // 마커에 표시할 인포윈도우를 생성합니다 
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: `<div><b>${c_n}m^(-2/3)</b><br/>${contents}</div>` // 인포윈도우에 표시할 내용
+                });
+
+                // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+                // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+            }
+        }
     }
 })
 
@@ -150,6 +187,23 @@ document.addEventListener("DOMContentLoaded", function(){
             }
             console.log(jsonArray);
         };
+        
     })
-
+    
 });
+
+
+
+
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return ()=>{infowindow.open(map, marker);};
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return ()=>{infowindow.close();};
+}
+
+
+
