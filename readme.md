@@ -1,5 +1,5 @@
 # 중동의 육상에서의 대기 광학난류: 예측모델링 및 측정
-
+https://miro.com/app/board/uXjVM6BtnL0=/?share_link_id=873519372177
 ## 1. Introduction
 
 광학 난류는 electro-optic sensing system의 다양한 종류에 영향을 준다.
